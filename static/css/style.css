@@ -1,0 +1,208 @@
+/* Fondo general */
+body {
+    background-image: url("../img/fondo.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(2px) brightness(0.9);
+    -webkit-backdrop-filter: blur(2px) brightness(0.9);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    animation: fadeIn 2s ease-in-out;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.hero-img img {
+    width: 80%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* REDES SOCIALES */
+.section.redes {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.section.redes i {
+    color: #333;
+    font-size: 3rem;
+    width: 80px;
+    margin: 0 10px;
+    transition: transform 0.3s, filter 0.3s;
+}
+
+.section.redes i:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+
+/* NAVBAR */
+.navbar-custom {
+    background-color: #116b1d;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-weight: 500;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
+}
+
+.navbar-custom .nav-link {
+    color: #fff !important;
+    transition: color 0.3s;
+}
+
+.navbar-custom .nav-link:hover {
+    color: #ffe600 !important;
+}
+
+/* FOOTER */
+.footer-custom {
+    background-color: #116b1d;
+    color: white;
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+}
+
+/* CATEGORÍAS DESTACADAS */
+.category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.category-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.category-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* ANIMACIÓN TESTIMONIOS */
+.testimonial-animated {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-in-out;
+}
+
+.testimonial-animated.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.testimonial {
+    background: linear-gradient(135deg, #fdfbfb, #ebedee);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.testimonial p {
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+.testimonial small {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+
+/* PROMOCIONES */
+.promo-card {
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.promo-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+}
+
+.slide-in-left {
+    transform: translateX(-100px);
+    opacity: 0;
+}
+
+.slide-in-right {
+    transform: translateX(100px);
+    opacity: 0;
+}
+
+.card-carrito {
+  background: rgba(255, 255, 255, 0.85); /* Fondo semi-transparente */
+  backdrop-filter: blur(4px);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-carrito:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-carrito img {
+  width: 80%;
+  height: 250px;          /* Aumenta la altura, antes tenías 200px o 180px */
+  object-fit: cover;       /* Mantiene la proporción sin estirar ni deformar */
+  border-bottom: 1px solid #ddd;
+  border-radius: 8px 8px 0 0; /* Opcional: bordes redondeados arriba */
+}
+
+
+.cantidad-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  text-align: center;
+  line-height: 32px;
+  font-weight: bold;
+}
+

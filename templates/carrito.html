@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-center mb-4">Tu Carrito</h2>
+
+<div id="carrito-contenido" class="mb-4"></div>
+
+<div class="text-end">
+  <button class="btn btn-danger me-2" onclick="confirmarVaciarCarrito()">Vaciar Carrito</button>
+  <button class="btn btn-primary" onclick="confirmarIrAPagar()">Ir a pagar</button>
+</div>
+
+<style>
+.cantidad-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  text-align: center;
+  line-height: 30px;
+}
+.card-carrito {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+.card-carrito:hover {
+  transform: scale(1.02);
+}
+</style>
+
+<!-- Solo carga el JS externo -->
+<script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
+{% endblock %}

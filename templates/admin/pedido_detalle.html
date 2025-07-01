@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Detalle del Pedido #{{ pedido.id }}</h2>
+
+<div class="card mt-4">
+  <div class="card-body">
+    <p><strong>Cliente:</strong> {{ pedido.cliente_nombre }}</p>
+    <p><strong>Total:</strong> S/. {{ "%.2f"|format(pedido.total) }}</p>
+    <p><strong>Fecha:</strong> {{ pedido.fecha.strftime('%d/%m/%Y %H:%M:%S') }}</p>
+
+    {% if pedido.detalles %}
+      <hr>
+      <h5>Productos:</h5>
+      <pre>{{ pedido.detalles }}</pre>
+    {% else %}
+      <p>No hay detalles registrados.</p>
+    {% endif %}
+  </div>
+</div>
+
+<a href="{{ url_for('mostrar_pedidos') }}" class="btn btn-secondary mt-3">Volver a la lista de pedidos</a>
+{% endblock %}

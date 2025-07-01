@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="text-center mb-4">Catálogo de Productos</h2>
+
+<div class="row">
+  {% for p in productos %}
+  <div class="col-md-4 mb-4 d-flex align-items-stretch">
+    <div class="card product-card h-100 d-flex flex-column">
+
+      <!-- Imagen del producto -->
+      <img src="{{ url_for('static', filename='img/' + p.foto) }}" class="card-img-top product-img" alt="{{ p.nombre }}">
+
+      <!-- Contenido del producto -->
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">{{ p.nombre }}</h5>
+        <p class="card-text">{{ p.descripcion }}</p>
+        <p class="card-text fw-bold">S/. {{ p.precio }}</p>
+        <div class="mt-auto">
+          <button class="btn btn-success w-100"
+            onclick='agregarProductoAlCarrito(this)'
+            data-id="{{ p.id }}"
+            data-nombre="{{ p.nombre }}"
+            data-precio="{{ p.precio }}"
+            data-imagen="{{ url_for('static', filename='img/' ~ p.foto) }}">
+            Añadir al carrito
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast-custom">✅ Producto añadido al carrito</div>
+
+<style>
+.toast-custom {
+  position: fixed;
+  bottom: 120px;  /* << AUMENTA EL MARGEN DESDE ABAJO */
+  right: 30px;
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.5s;
+  transform: translateY(20px);
+  z-index: 9999;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  font-weight: bold;
+}
+.toast-custom.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
+
+<script>
+function agregarProductoAlCarrito(btn) {
+  // Lógica original
+  addToCart(btn);
+
+  // Mostrar el Toast
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 5000);
+}
+</script>
+
+{% endblock %}
