@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delicias Express</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <div class="d-flex flex-column min-vh-100">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+      <div class="container-fluid">
+        <a id="adminBrand" class="navbar-brand" href="/">Delicias Express</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            {% if not session.get('admin_logged') %}
+              <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" href="/productos">Productos</a></li>
+              <li class="nav-item"><a class="nav-link" href="/carrito">Carrito</a></li>
+            {% else %}
+              <li class="nav-item"><a class="nav-link" href="/admin">Panel Admin</a></li>
+              <li class="nav-item"><a class="nav-link" href="/admin/pedidos">Pedidos</a></li>
+              <li class="nav-item"><a class="nav-link" href="/admin/logout">Cerrar sesión</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- CONTENIDO -->
+    <main class="container mt-4 flex-fill">
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-custom text-white text-center py-3">
+      <p>© 2025 Delicias Express</p>
+    </footer>
+
+  </div>
+
+  <!-- MODAL LOGIN ADMIN OCULTO -->
+  <div class="modal fade" id="adminLoginModal" tabindex="-1" aria-labelledby="adminLoginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form method="POST" action="{{ url_for('admin_login') }}">
+          <div class="modal-header">
+            <h5 class="modal-title" id="adminLoginModalLabel">Login Administrador</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="username" class="form-label">Usuario:</label>
+              <input type="text" name="username" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña:</label>
+              <input type="password" name="password" class="form-control" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOTSTRAP + JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
+
+  <!-- SCRIPT PARA MOSTRAR EL MODAL CON CTRL+CLICK -->
+  <script>
+  const brand = document.getElementById('adminBrand');
+  brand.addEventListener('click', function(e) {
+    if (e.ctrlKey) {
+      e.preventDefault();
+      window.location.href = "{{ url_for('admin_login') }}";
+    }
+    // Si es click normal, que siga funcionando como siempre (ir a "/")
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>

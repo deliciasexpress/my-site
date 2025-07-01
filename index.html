@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Bienvenido a Delicias Express</h1>
+  <p>Sabores rápidos, frescos y al instante. ¡Tu comida favorita a un clic!</p>
+  <div class="hero-img">
+    <img src="{{ url_for('static', filename='img/hero-food.jpg') }}" alt="Comida deliciosa">
+  </div>
+</div>
+
+<!-- CATEGORÍAS DESTACADAS -->
+<div class="container my-5">
+  <h2 class="text-center mb-4">Nuestros Favoritos</h2>
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card category-card">
+        <img src="{{ url_for('static', filename='img/burger.jpg') }}" class="card-img-top" alt="Hamburguesas">
+        <div class="card-body text-center">
+          <h5 class="card-title">Hamburguesas</h5>
+          <p class="card-text">Jugosas y recién hechas para ti.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card category-card">
+        <img src="{{ url_for('static', filename='img/pizza.png') }}" class="card-img-top" alt="Pizzas">
+        <div class="card-body text-center">
+          <h5 class="card-title">Pizzas</h5>
+          <p class="card-text">Variedad de sabores irresistibles.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card category-card">
+        <img src="{{ url_for('static', filename='img/bebidas.jpg') }}" class="card-img-top" alt="Bebidas">
+        <div class="card-body text-center">
+          <h5 class="card-title">Bebidas</h5>
+          <p class="card-text">Refresca tu día con nuestras bebidas frías.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMOCIONES CON ANIMACIÓN -->
+<div class="container my-5">
+  <h2 class="text-center mb-4">Promociones del Día</h2>
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="card promo-card slide-in-left">
+        <img src="{{ url_for('static', filename='img/promo1.jpg') }}" class="card-img-top" alt="Promo 1">
+        <div class="card-body text-center">
+          <h5 class="card-title">Combo Familiar</h5>
+          <p class="card-text">2 pizzas + 1 gaseosa + complemento a solo S/49.90.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="card promo-card slide-in-right">
+        <img src="{{ url_for('static', filename='img/promo2.jpg') }}" class="card-img-top" alt="Promo 2">
+        <div class="card-body text-center">
+          <h5 class="card-title">Alitas + Bebida</h5>
+          <p class="card-text">10 alitas + 2 bebidas a solo S/24.90.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIOS -->
+<div class="container my-5">
+  <h2 class="text-center mb-4">Lo que dicen nuestros clientes</h2>
+  <div class="testimonial testimonial-animated">
+    <p>"¡La comida llegó caliente y en el tiempo prometido! Muy recomendado."</p>
+    <small>- Juan Pérez</small>
+  </div>
+  <div class="testimonial testimonial-animated">
+    <p>"Excelente atención y precios justos. ¡Volveré a pedir pronto!"</p>
+    <small>- María López</small>
+  </div>
+  <div class="testimonial testimonial-animated">
+    <p>"Las promociones son buenísimas y la calidad de la comida espectacular."</p>
+    <small>- Carlos Sánchez</small>
+  </div>
+</div>
+
+
+<!-- REDES SOCIALES -->
+<div class="section redes text-center mb-5">
+  <h3>Encuéntranos en:</h3>
+  <a href="#"><i class="fa-brands fa-instagram"></i></a>
+  <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+  <a href="#"><i class="fa-brands fa-square-whatsapp"></i></a>
+</div>
+
+<!-- ANIMACIONES JS -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const left = document.querySelector('.slide-in-left');
+    const right = document.querySelector('.slide-in-right');
+
+    left.style.opacity = 0;
+    right.style.opacity = 0;
+
+    setTimeout(() => {
+      left.style.transition = "all 1s ease";
+      left.style.transform = "translateX(0)";
+      left.style.opacity = 1;
+    }, 300);
+
+    setTimeout(() => {
+      right.style.transition = "all 1s ease";
+      right.style.transform = "translateX(0)";
+      right.style.opacity = 1;
+    }, 600);
+  });
+</script>
+
+<style>
+  .slide-in-left {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  .slide-in-right {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  .promo-card {
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .promo-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const testimonials = document.querySelectorAll('.testimonial-animated');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    testimonials.forEach(t => observer.observe(t));
+  });
+</script>
+
+
+{% endblock %}
